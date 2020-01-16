@@ -116,6 +116,17 @@ describe "Phone authorization handler form", type: :system do
       end
     end
 
+    it "only includes one \"redirect_url\" param" do
+      click_link find("a", text: "New proposal").text
+
+      within "#authorizationModal" do
+        href = find(".button.expanded")[:href]
+        p href
+        expect(href).to match /(\?|&)[redirect_url=]{1,1}/
+      end
+    end
+
+
     it "adds a redirect_url to the authorization form" do
       click_link find("a", text: "New proposal").text
       redirect_url = find("a", text: "New proposal")["data-redirect-url"]
