@@ -16,6 +16,9 @@ module Decidim
         require "decidim/exporters/excel"
         require "decidim/proposals/proposal_serializer"
       end
+      initializer "decidim_phone_authorization_handler.assets" do |app|
+        app.config.assets.precompile += %w(decidim_phone_authorization_handler_manifest.css)
+        end
     end
   end
 end
